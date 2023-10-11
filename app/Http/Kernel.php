@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\SampleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -21,6 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // \App\Http\Middleware\SampleMiddleware::class contoh middleware jika ingin secar global
     ];
 
     /**
@@ -43,6 +45,11 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'sample_group_middleware' => [
+            SampleMiddleware::class, // jika tanpa parameter
+            'sample:parameter1, parameter2' // jika midleware dengan custom parameter
+        ]
     ];
 
     /**
@@ -63,5 +70,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // alias Sample middleware
+        'sample' => \App\Http\Middleware\SampleMiddleware::class
     ];
 }
