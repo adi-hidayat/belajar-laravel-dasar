@@ -1,0 +1,33 @@
+Request Lifecycle
+- Sebelum kita membuat kode program menggunakan laravel, ada baiknya kita perlu tahu cara kerja 
+  Laravel itu sendiri
+- Terutama bagaimana alur hidup dari request yang kita  lakukan ke aplikasi Laravel
+
+public/index.php
+- Entry point pertama dari aplikasi Laravel adalah sebuah file index.php yang terdapat di
+  Folder public
+- Semua request yang masuk ke aplikasi Laravel, maka akan masuk melalui file ini
+- File ini sengaja disimpan di dalam folder public tersendiri, agar file-file kode program
+  lainnya tidak bisa diakses via URL
+- File index.php sebenarnya tidak ada yang kompleks, hanya me-load framework Laravel, disimpan
+  menjalankan kode program yang kita buat
+- Ketika dijalankan maka dia akan menjalankan Kernel
+
+Kernel
+- Dari index.php, request akan dilanjutkan ke class Kernel
+- Di Laravel, terdapat dua jenis Kernel, HTTP Kernel, dan Console Kernel. HTTP Kernel digunakan untuk 
+  menangani request berupa HTTP, sedangkan Console Kernel digunakan untuk menangani request berupa 
+  perintah Console
+  Lokasi file Kernel HTTP : app/Http/Kernel.php
+- Kernel merupakan core logic dari aplikasi, dimana di dalam Kernel, request yang masuk ditangani sampai
+  mendapatkan response
+- Kernel melakukan beberapa hal, pertama Kernel melakukan proses bootstraping, yaitu me-load yang
+  namanya Service Provider
+
+Service Provider
+- Laravel akan melakukan iterasi ke semua Service Provideer dan akan melakukan proses registrasi dan
+  juga bootstraping ke semua service Provider
+- Service Provider ini lah yang bertanggung jawab melakukan bootstraping semua komponen di Laravel
+  seperti proses : database, queue, validation, routing dan lain-lain
+  contoh / file Service Provider : app/Providers disinilah terdapat file-file service providers 
+  

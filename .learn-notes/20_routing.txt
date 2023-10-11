@@ -1,0 +1,32 @@
+Routing
+- Proses menerima HTTP Request dan menjalankan kode sesuai dengan URL yang diminta, Routing biasanya tergantung
+  dari HTTP Method dan URL
+- Salah satu Service Provider yang paling penting di Laravel adalah RouteServiceProvider
+- RouteServiceProvider bertanggung jawab untuk melakukan load data routing dari folder routes.
+  Jika kita hapus Service Provider ini, secara otomatis proses routing tidak akan berjalan
+- RouteServiceProvider secara default akan me-load data routing dari folder routes
+
+Basic Routing
+- Salah satu contoh routing yang paling sederhana adalah menggunakan path dan juga closure function sebagai
+  handlernya
+- Kita bisa menggunakan Facades Route, lalu menggunakan function sesuai HTTP Method nya, misal :
+  Route::get($uri, $callback);
+  Route::post($uri, $callback);
+  Route::put($uri, $callback);
+  Route::patch($uri, $callback);
+  Route::delete($uri, $callback);
+  Route::options($uri, $callback);
+
+  contoh di : routes/web.php dan di test
+
+Melihat Semua Routing
+- Kadang kita ada kebutuhan melihat semua Routing yang ada di aplikasi Laravel kita
+- Untuk melihatnya,  kita bisa memanfaatkan file artisan dengan perintah : php artisan route:list
+
+Fallback Route
+- Apa yang terjadi jika kita melakukan request ke halaman yang tidak ada di aplikasi Laravel kita?
+  Secara otomatis akan mengembalikan error 404
+- Kadang-kadang kita ingin mengubah tampilan halaman error ketika yang diakses tidak ada
+- Pada kasus seperti ini, kita bisa membuat fallback route, yaitu callback yang akan dieksekusi ketika
+  tidak ada route yang cocok dengan halaman yang diakses
+- kita bisa menggunakan function Route::fallback(closure)

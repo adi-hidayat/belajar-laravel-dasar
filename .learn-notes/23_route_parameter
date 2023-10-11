@@ -1,0 +1,25 @@
+Route Parameter
+• Kadang kita ingin mengirim parameter yang terdapat di bagian dari URL ketika membuat web.
+  Contoh misal parameter untuk id di URL /products/{productId}
+• Laravel mendukung route parameter, dimana kita bisa menambahkan parameter di route url dan
+  secara otomatis kita bisa ambil data nya di closure function yang kita gunakan di Route
+• Untuk membuat route parameter, kita bisa gunakan {nama}. Kita bisa menambah beberapa route
+  parameter, asal namanya berbeda
+• Data route parameter tersebut akan dikirim secara otomatis pada closure function parameter
+
+Regular Expression Constraints
+• Kadang ada kalanya kita ingin menggunakan Route Parameter, namun parameternya memiliki pola
+  tertentu, misal parameternya hanya boleh angka misalnya
+• Pada kasus seperti itu, kita bisa menambahkan regular expression di Route Parameter
+• Caranya kita bisa gunakan function where() setelah pembuatan Route nya
+
+Optional Route Parameter
+• Laravel juga mendukung Route Parameter Optional, artinya parameter nya tidak wajib disi
+• Untuk membuat sebuah route parameter menjadi optional, kita bisa tambahkan? (tanda tanya)
+• Namun perlu dingat, iika kita meniadikan route parameter nya optional. maka kita waiib
+  menambahkan default value di closure function nya
+
+Routing Conflict
+• Saat membuat router dengan parameter, kadang terjadi conflict routing
+• Di Laravel jika terjadi conflict tidak akan menyebabkan error, namun Laravel akan
+  memprioritaskan router yang pertama kali dibuat

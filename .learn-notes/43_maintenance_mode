@@ -1,0 +1,28 @@
+Maintenance Mode
+• Saat kita akan melakukan maintenance di aplikasi kita, misal sedang melakukan perubahan
+  database atau upgrade server, maka ada baiknya kita menggunakan Maintenance Mode di aplikasi
+  Laravel kita
+• Saat aplikasi kita sedan Maintenance Mode, secara otomatis semua request akan mengembalikan
+  HTTP Exception 503
+• Untuk menyalakan Maintenance Mode, kita bisa gunakan perintah:
+  php artisan down
+• Secara otomatis akan ada file di storage/framework/down
+
+
+
+Menghentikan Maintenance Mode
+• Untuk menghentikan maintenance mode, kita bisa gunakan perintah:
+  php artisan up
+• Secara otomatis file storage/framework/down akan dihapus
+
+Mengakses Aplikasi ketika Maintenance
+• Kadang saat Maintenance Mode, ada kebutuhkan untuk kita mengakses aplikasi Laravel nya
+• Untuk melakukan itu, kita perlu membuat secret ketika melakukan maintenance mode :
+  php artisan down --secret="yoursecretkeyhere"
+• Selanjutnya kita bisa mengakses web kita dengan url:
+  http://contoh.com/yoursecretkeyhere
+• Nanti secara otomatis Laravel akan membuat Cookie secret key tersebut, sehingga kita bisa
+  mengakses aplikasi Laravel walaupun sedang dalam Maintenance Mode 
+
+
+

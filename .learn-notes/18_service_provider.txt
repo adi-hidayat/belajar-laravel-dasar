@@ -1,0 +1,41 @@
+Service Provider
+- Merupakan penyedia service atau dependency
+- Didalam Service Provider, biasanya kita melakukan registrasi dependency di dalam service Container
+- Bahkan semua proses bootstraping atau pembentukan object-object di framework Laravel itu sendiri
+  dilakukan di ServiceProvider, kita bisa lihat saat pertama kali membuat project Laravel, ada
+  banyak sekali file ServiceProvider di namespace App\Providers
+
+Membuat Service Provider
+- Untuk membuat Service Provider, kita bisa memanfaatkan file artisan untuk melakukan auto generate file nya
+- Kita bisa gunakan perintah : php artisan make:provider NamaServiceProvider
+
+Service Provider Function
+- Terdapat dua function, yaitu register() dan boot()
+- Di register(), kita harus melakukan registrasi dependency yang dibutuhkan ke Service Container,
+  jangan melakukan kode selain registrasi dependency di function register(), jika tidak ingin mengalami
+  error dependency belum tersedia
+- Function boot() dipanggil setelah register() selesai, disini kita bisa melakukan hal apapun yang
+  diperlukan setelah proses registrasi dependency
+  Contoh kode : Providers/FooBarServiceProvider.php
+
+Registrasi Service Provider
+- Setelah kita buat service provider, secara default service provider tidak diload oleh Laravel
+- untuk memberi tahu laravel jika kita ingin menambahkan Service Provider, kita perlu menambahkannya
+  pada config di app.php terdapat key providers yang berisi class-class Service Provider yang akan dijalan
+  kan oleh Laravel
+
+Bindings dan Singletons Properties
+- Jika kita hanya butuh melakukan binding sederhana, misal dari interface ke class, kita bisa menggunakan
+  fitur binding via properties di Service Provider
+- Kita bisa tambahkan property bindings untuk membuat binding, atau
+- Menggunakan property singletons untuk membuat binding singleton
+
+Deffered
+- Secara default, semua service provider akan di load oleh laravel, baik itu kita butuhkan atau tidak
+- Laravel memiliki deferred provider, dimana kita bisa menandai sebuah service provider agar tidak di load
+  jika tidak dibutuhkan dependency nya
+- Kita bisa menandai Service provider kita dengan implement interface DefferableProvider, lalu implement
+  method provides() yang memberi tahu tipe dependencynya apa saja yang terdapat di Service Provider ini
+- Dengan fitur ini, service provider hanya akan di load ketika memang dependencynya dibutuhkan
+- Setiap request baru, maka service provider yang sudah deffered tidak akan di load jika memang tidak dibutuhkan
+// tujuan nya supaya service di load ketika ada fitur yang membutuhkan / menggunakannya saja

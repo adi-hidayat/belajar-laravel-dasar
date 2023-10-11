@@ -1,0 +1,34 @@
+Laravel Entry Point
+• Entry Point atau jalur mask utama dari Laravel sebenarnya adalah file index.php yang terdapat di
+  folder public
+• Ketika kita melakukan request /hello, sebenarnya kita mengakses /index.php/hello. Hal ini sudah
+  saya jelaskan di kelas PHP MVC
+• Lantas bagaimana jika kita ingin menambahkan file static? Misal JavaScript, CSS, HTML, Gambar
+  dan lain-lain?
+
+
+Static File
+• Untuk menambahkan static file, kita bisa dengan mudah menambahkan ke dalam folderpublic
+• Secara otomatis ketika kita mengakses url ke file static, maka web server akan mencari static file
+  terlebih dahulu, jika tidak ada, maka terakhir akan dikirim request nya ke index.php
+
+
+Untuk Apa Directory Resources?
+•  Jika diperhatikan, ketika kita membuat project Laravel, terdapat folder resources
+•  Selain views, di dalam resources terdapat folder css dan js
+•  Kenapa ada file css dan js disana?
+•  Jangan bingung dengan ini, ini adalah fitur tambahan Laravel yang memanfaatkan NodeS, dimana
+   dengan NodeJS, kita bisa melakukan kompilasi file css dan js yang terdapat di folder resources agar
+   di minify (sehingga ukurannya kecil)
+•  Setelah di compile, file js dan css akan tetap di pindahkan ke folder public
+run command :
+command npm : npm install, lalu
+npm run prod , selanjutnya secara otomatis file css dan js yang ada dalam direktory resources
+akan dikompilasi dan hasil kompilasinya akan disimpan ke dalam forder public
+
+
+
+
+
+
+

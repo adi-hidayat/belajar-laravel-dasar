@@ -1,0 +1,67 @@
+Middleware
+• Middleware merupakan cara untuk melakukan filtering terhadap HTTP Request yang masuk ke
+  aplikasi kita
+• Laravel banyak sekali menggunakan middleware, contohnya melakukan enkripsi cookie, verifikasi
+  CSRF, authentication dan lain-lain
+• Semua middleware biasanya disimpan di folder app/Http/Middleware
+
+Setiap request yang masuk, akan selalu melewati middleware, seperti pada diagam berikut
+
+User ----------Request ----------> Middleware --------------> Controller |    
+                                                                         |
+ User <--------- Response <----------Middleware (jika dibutuhkan-----------                                                        
+
+Middleware bisa lebih dari satu atau multiple, misal Request itu membutuhkan Middleware Cookie, Auth dll.
+
+
+Membuat Middleware
+• Untuk membuat middleware, kita bisa gunakan file artisan dengan perintah:
+  php artisan make:middleware NamaMiddleware
+• Middleware mendukung dependency injection, jadi kita bisa menambahkan dependency yang kita
+  butuhkan di constructor iika memang mau
+• Middleware sebenarnya sebuah class sederhana, hanya memiliki method handle(request, closure)
+  yang akan dipanggil sebelum request mask ke controller kita
+• Jika kita ingin meneruskan ke controller, kita bisa panggil closure(), sedangkan jika tidak, kita bisa
+  melakukan manipulasi apapun itu di middleware
+• Method handle() di middleware bisa mengembalikan Response
+
+Contoh Kode : SampleMiddleware
+
+Global Middleware
+• Secara default, middleware tidak akan dieksekusi oleh Laravel, kita perlu meregistrasikan
+  middleware nya terlebih dahulu ke aplikasi kita
+• Kita bisa meregistrasikan middleware dengan beberapa cara
+• Pertama kita bisa registrasikan middleware secara global
+• Global, artinya middleware akan dieksekusi di semua route, ini kita bisa registrasikan di field
+  $middleware di Kernel
+
+
+  Route Middleware
+  • Selain global, kita juga bisa registrasikan middleware per route, dimana kita bisa registrasikan
+    satu-satu, atau bisa langsung buat group middleware
+  • Untuk registrasikan satu-satu middleware, kita bisa langsung menggunakan class middleware nya,
+    atau membuat alias di $routeMiddleware di kelas Kernel lalu update pada routes.web.php
+
+Middleware Group
+• Kadang kita ingin menggabungkan beberapa middleware dalam satu group, sehingga ketika
+  membutuhkannya, kita cukup sebutkan nama group nya saja
+• Laravel mendukung hal tersebut, kita bisa but nama group dan middleware-middleware yang
+  tersedia di group tersebut di property $middlewareGroups di kelas Kernel
+• Untuk menggunakan middleware group tersebut, kita cukup sebut nama group nya saja
+
+Middleware Parameter
+• Jika kita ingin menambahkan dependency di middleware, kita bisa manfaatkan dependency
+  injection di Laravel, namun bagaimana jika kita hanya ingin mengirimkan parameter sederhana
+  saja?
+• Kita bisa lakukan itu di handle() method, cukup tambahkan parameter tambahan setelah $next
+  parameter, dan kita bisa kirim parameter tersebut ketika memanggil middleware nya dengan
+  menggunakan : (titik dua), lalu jika ada lebih dari satu parameter, gunakan koma sebagai
+  pemisahnya
+
+  
+  Exclude Middleware
+  • Sebelumnya kita tahu bahwa di Laravel, terdapat group middleware bernama web dan api, disana
+    sudah banyak sekali middleware yang suda secara default disediakan oleh Laravel
+  • Kadang kita ingin meng-exclude atau membuat middleware di dalam sebuah route, pada kasus
+    seperti ini kita bisa lakukan ketika menambahkan route
+  • Kita bisa gunakan method withoutMiddleware() pada Route

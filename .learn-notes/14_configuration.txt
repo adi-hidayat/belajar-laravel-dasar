@@ -1,0 +1,28 @@
+Configuration 
+
+- Environment variable cocok digunakan untuk jenis konfigurasi yang memang butuh berubah-ubah nilainya
+  dan terintegrasi dengan baik dengan environment variable di sistem operasi
+- Laravel juga mendukung penulisan konfigurasi dengan menggunakan PHP Code, konfigurasi ini pengaturannya
+  hampir sama untuk tiap lokasi dijalankan aplikasi
+- Namun saat menggunakan fitur Laravel Configuration, kita juga tetap bisa mengakses Environment variable
+
+Folder Configuration
+- Laravel menyimpan semua konfigurasi di folder config yang terdapat di project
+- Dan prefix dari konfigurasi diawali dengan file php yang terdapat di project tersebut
+
+Membuat / Menambahkan file konfigurasi
+- Untuk membuat file konfigurasi, kita cukup membuat file php di dalam folder config
+- Lalu di dalam file tersebut, kita cukup return konfigurasi dalam bentuk array
+
+Contoh file yang sudah ditambahkan : config/delivery.php
+
+Mengambil konfigurasi
+- Untuk mengambil konfigurasi di file config, kita bisa menggunakan function config(key, default)
+- Dimana pembuatan key pada config diawali dengan nama file, lalu diikuti dengan key yang terdapat di dalam
+  return value nya 
+- Tiap nested array menggunakan . (titik) 
+- Misal contoh delivery.destinations.west artinya kita ambil konfigurasi dari file delivery.php, lalu ambil
+  array key destinations, dan di dalamnya kita ambil data key west 
+- Sama seperti function env(), function config() juga memiliki parameter default value jika key
+  konfigurasinya tidak tersedia
+  Contoh file : ConfigurationTest.php

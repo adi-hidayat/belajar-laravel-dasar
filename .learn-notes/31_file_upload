@@ -1,0 +1,8 @@
+File Upload
+• Laravel juga sudah menyediakan method file(key) di Request untuk mengambil request file upload
+• Tine data File Upload direpresentasikan dalam class Illuminate\ Htto\UnloadedFile di Laravel
+• https://laravel.com/api/9.x/Illuminate/Http/UploadedFile.html
+• File Upload di Laravel terintegrasi dengan baik dengan File Storage
+
+
+

@@ -1,0 +1,28 @@
+Unit Test
+- Untuk unit test, kita bisa membuat class unit test seperti menggunakan PHP Unit biasanya
+- Yaitu dengan membuat class turunan dari PHP\Framework\TestCase
+- Jika kita perlu membuat test tanpa harus menggunakan fitur Laravel, maka kita cukup buat Unit
+  Test saja
+
+Integration Test
+- Laravel memiliki fitur yang mempermudah dalam membuat integration test
+- Bedanya dari unit test, di integration test, aplikasi laravel bisa diakses dengan mudah
+  misal ketika unit test ingin memanggil Database, Controller, dan lain-lain
+- Untuk membuat integration Test, kita cukup membuat class turunan dari
+  Illuminate\Foundation\Testing\TestCase
+- Integration Test akan lebih lambat dibandingkan Unit Test, karena kita butuh me-load
+  framework Laravel terlebih dahulu
+- Dan jika kita membutuhkan fitur Laravel, maka kita wajib menggunakan Integration Test
+
+Membuat Test
+- Untuk membuat Integration Test, kita bisa lakukan manual, atau kita bisa gunakan file artisan
+  menggunakan perintah : php artisan make:test NamaTest
+- Secara otomatis akan masuk ke folder tests/Feature
+- Jika kita ingin membuat Unit Test, kita bisa gunakan perintah ini :
+  php artisan make:test NamaTest --unit
+- Secara otomatis akan masuk ke folder tests/Unit
+
+Menjalankan Test
+- Untuk menjalankan test, kita bisa gunakan PHPUnit seperti biasanya
+- Atau jika ingin menjalankan semua test, bisa menggunakan file artisan dengan perintah :
+  php artisan test

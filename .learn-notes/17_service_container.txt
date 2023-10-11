@@ -1,0 +1,72 @@
+Service Container
+
+- Sebelumnya kita sudah mencoba melakukan dependency injection secara manual 
+- Laravel memiliki fitur dependency injection secara otomatis, dan wajib dikuasai agar lebih mudah 
+  membuat aplikasi yang menggunakan laravel 
+- Di Laravel fitur ini bernama Service Container, dimana Service Container ini merupakan fitur yang 
+  digunakan untuk manajemen dependencies dan juga dependency injection 
+
+Application Class
+- Service Container di Laravel di representasikan dalam class bernama Application 
+- Kita tidak perlu membuat class Application secara manual, karena semua sudah dilakukan secara 
+  otomatis oleh framework Laravel 
+- Di semua project Laravel, hampir disemua bagian terdapat field $app yang merupakan instance dari 
+  Application 
+  https://laravel.com/api/9.x/Illuminate/Foundation/Application.html
+
+Membuat dependency 
+- Dengan menggunakan Service Container, kita tidak perlu membuat object secara manual lagi 
+  menggunakan kata kunci new 
+- Kita bisa menggunakan function make(key) yang terdapat di class Application untuk membuat dependency 
+  Secara otomatis 
+- Saat kita menggunakan make(key), object akan selalu dibuat baru, jadi harap hati-hati ketika menggunakannya
+  karena dia bukan object yang sama
+  Contoh Kode : ServiceContainerTest.php 
+
+Mengubah cara membuat Dependency  
+- Saat kita menggunakan function make(key), secara otomatis Laravel akan membuat object, namun
+  kadang kita ingin menentukan cara pembuatan objectnya 
+- Pada kasus seperti ini, kita bisa menggunakan method bind(key, closure)
+- Kita cukup return kan data yang kita inginkan pada function closurenya 
+- Saat kita menggunakan make(key) untuk mengambil dependencynya, secara otomatis function closure akan 
+  dipanggil 
+- Perlu diingat juga, setiap kita memanggil make(key), maka function closure akan selalu dipanggil, jadi 
+  bukan menggunakan object yang sama 
+  Contoh kode : App/Data/Person.php, ServiceContainerTest.php
+
+Singleton 
+- Sebelumnya ketika menggunakan make(key), maka secara default Laravel akan membuat object 
+  baru, atau jika menggunakan bind(key, closure), function closure akan selalu dipanggil 
+- Kadang ada kebutuhan kita membuat object singleton, yaitu satu object saja, dan ketika butuh, 
+  kita cukup menggunakan object yang sama 
+- Pada kasus ini, kita bisa menggunakan function singleton(key, closure), maka secara otomatis ketika 
+  kita menggunakan make(key), maka object hanya dibuat di awal, selanjutnya object yang sama akan digunakan 
+  terus menerus ketika kita memanggil make(key)
+  Contoh kode : App/Data/Person.php, ServiceContainerTest.php
+
+Instance 
+- Selain menggunakan function singleton(key, closure), untuk membuat singleton object, kita juga bisa 
+  menggunakan object yang sudah ada, dengan cara menggunakan function instance(key, object)
+- Ketika menggunakan make(key), maka instance object tersebut akan dikembalikan
+  Contoh kode : App/Data/Person.php, ServiceContainerTest.php
+
+Dependency injection
+- Secara default, jika kita membuat object menggunakan make(key), lalu Laravel mendeteksi terdapat conststuctor, 
+  maka Laravel akan mencoba menggunakan dependency yang sesuai dengan tipe yang di butuhkan di Laravel
+  Mengubah Field Foo di Bar Class 
+  Contoh kode : App/Data/Person.php, ServiceContainerTest.php
+
+Dependency Injection di Closure 
+- Dalam function closure yang kita gunakan, kita juga bisa menggunakan parameter $app untuk mengambil object yang sudah  
+  ada di Service Container 
+- Kadang ini mempermudah ketika kita ingin membuat object yang kompleks
+  Contoh kode : App/Data/Person.php, ServiceContainerTest.php
+
+Binding Interface ke Class 
+- Dalam praktek pengembangan perangkat lunak, hal yang bagus ketika membuat sebuah class yang berhubungan dengan logic 
+  adalah, membuat interface sebagi kontak nya. Harapannya agar implementasi class nya bisa berbeda-beda tanpa harus mengubah 
+  kontrak interface nya 
+- Laravel memiliki fitur melakukan binding dari interface ke class secara mudah, kita bisa menggunakan function bind(interface, class)
+  atau bind(interface, closure) dimana closure nya mengembalikan object class implementasinya, atau bisa juga menggunakan 
+  function singleton(interface, class) dan singleton(interface, closure)
+  Contoh Kode : HelloService.php HelloServiceIndonesia.php ServiceContainerTest.php 

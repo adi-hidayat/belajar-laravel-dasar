@@ -1,0 +1,10 @@
+Laravel menyediakan sebuah file bernama artisan
+File artisan ini adalah kode php yang bisa digunakan untuk banyak hal
+
+Melihat semua file artisan
+- Gunakan command : php artisan
+- Secara otomatis kita akan melihat semua fitur yang terdapat di file artisan
+
+Melihat detail informasi command
+- Untuk melihat detail informasi perintah yang terdapat di artisan, kita bisa gunakan :
+  php artisan perintah --help contoh : php artisan make model --help

@@ -1,0 +1,18 @@
+Dependecy Injection
+
+- Di dalam pengembangan perangkat lunak, ada konsep yang namanya Dependency Injection 
+- Dependency Injection adalah teknik dimana sebuah object menerima object lain yang dibutuhkan atau 
+  istilahnya dependencies
+- Saat kita membuat object, sering sekali kita membuat object yang membutuhkan object lain
+
+Contoh Kode : App/Data
+
+Foo dan Bar 
+- Dari class Foo dan Bar kita tahu bahwa Bar membutuhkan Foo, artinya Bar depends-on Foo, atau 
+  Foo adalah dependecy untuk Bar 
+- Dependency Injection berarti kita perlu memasukan object Foo ke dalam Bar, sehingga Bar bisa 
+  menggunakan object Foo 
+- Pada kode Foo dan Bar kita menggunakan Constructor untuk melakukan injection (memasukan dependency) 
+  sebenarnya caranya tidak hanya menggunakan Constructor, bisa menggunakan Attribute atau function, namun 
+  sangat direkomendasikan menggunakan Constructor agar terlihat jelas dependencynya dan kita tidak lupa 
+  menambahkan dependency nya

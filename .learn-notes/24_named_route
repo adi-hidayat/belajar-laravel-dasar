@@ -1,0 +1,7 @@
+Named Route
+• Di Laravel, kita bisa menamai Route dengan sebuah nama
+• Hal ini bagus ketika kita misal nanti butuh mendapatkan informasi tentang route tersebut, misal
+  route url nya, atau melakukan redirect ke route
+• Dengan menambahkan nama di Route nya, kita bisa menggunakan nama route saja, tanpa khawatir
+  URL nya akan diubah
+• Untuk menambahkan nama di route, kita cukup gunakan function name()

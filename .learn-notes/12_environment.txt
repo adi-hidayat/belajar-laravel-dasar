@@ -1,0 +1,23 @@
+Environment
+
+- Saat kita membuat aplikasi, kadang kita perlu menyimpan nilai konfigurasi di environment variable
+- Laravel memiliki fitur untuk memudahkan kita dalam mengambil data dari environment variable
+- Kita bisa gunakan function env(key) atau Env::get(key) untuk mendapatkan nilai dari environment variable
+- Internal implementasi dari Environment variabel di Laravel menggunakan library : https://github.com/vlucas/phpdotenv
+
+command menambahkan environment sistem operasi : export NAMAENVIRONMENT="VALUEENVIRONMENT"
+
+Contoh kode ada di file test : EnvTest
+
+File .env
+
+- Selain membaca dari environment variable, Laravel juga memiliki kemampuan untuk membaca
+  nilai dari file .env yang terdapat di project Laravel
+- Ini lebih mudah dibandingkan mengubah environment variable di sistem operasi
+- Kita cukup menambah environment variable ke file .env
+- File .env secara default di ignore di Git Project Laravel, oleh karena itu, kita bisa menambahkan 
+  Konfigurasi di local tanpa takut ter-commit ke Git Repository
+
+Bagaimana jika environment tidak tersedia? Kita bisa menggunakan default value di function env()
+contoh : $tax = env('percent_tax', 11); jika tidak ada percent_tax maka default value menggunakan 11
+contoh dengan class : Env::get(key_name, default_value)

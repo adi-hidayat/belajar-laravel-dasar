@@ -1,0 +1,23 @@
+Redirect
+• Sebelumnya kita sudah bahas tentang redirect di materi Route, sekarang kita bahas lebih detail
+  tentang redirect
+• Redirect it sendiri di Laravel direpresentasikan dalam response
+  Illuminate\Http\RedirectResponse
+• Untuk membuat object redirect, kita bisa menggunakan helper function redirect(to)
+
+Redirect to Named Routes
+• Sebelumnva kita sudah tahu bahwa kita bisa menambahkan name di routes
+• Laravel juga bisa melakukan redirect ke routes berdasarkan namanya, salah satu keuntungannya
+  adalah kita bisa menambahkan parameter tapa harus manual membuat path nya
+• Kita bisa menggunakan method route(name, params) di RedirectResponse
+
+Redirect to Controller Action
+• Selain menggunakan Named Routes, kita juga bisa melakukan redirect ke Controller Action
+• Secara otomatis nanti Laravel akan mencari path yang sesuai dengan Controller Action tersebut
+• Kita bisa menggunakan method action(controller, params) di RedirectResponse
+
+Redirect to External Domain
+• Secara default, redirect hanya dilakukan ke domain yang sama dengan lokasi domain aplikasi web
+  Laravel nya
+• Jika kita ingin melakukan redirect ke domain lain, kita bisa menggunakan method away(url) di
+  RedirectResponse
